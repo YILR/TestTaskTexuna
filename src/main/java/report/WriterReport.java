@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.Map;
 
 public class WriterReport {
-    private int count = 0;
+    private int count = 1;
     private boolean isParse = false;
     private Map<String, Map<String, String>> mapSettingXML;
 
@@ -49,7 +49,7 @@ public class WriterReport {
     private void checkRow(String header, int height, BufferedWriter writer) throws IOException {
         if (count >= height) {
             writer.write("~\n");
-            count = 0;
+            count = 1;
             writeRow(header, writer);
         }
     }
@@ -67,7 +67,7 @@ public class WriterReport {
         if (size < 0) {
             String[] strSplit = value.split(" ");
             if(strSplit.length != 2) {
-                int mid = key.equals("col2") ? 7 : 6;
+                int mid = key.equals("col2") ? width : width-1;
                 strSplit = new String[]{
                         value.substring(0, mid),
                         value.substring(mid),
